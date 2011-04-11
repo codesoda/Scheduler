@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2E8E158C-CA39-4B7D-8BC4-A74CACB25F18}"
+	ProjectSection(SolutionItems) = preProject
+		project.build = project.build
+		utility.build = utility.build
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSoda.Scheduler.WebTest", "src\CodeSoda.Scheduler.WebTest\CodeSoda.Scheduler.WebTest.csproj", "{6A659C25-E8B1-44B1-8C7C-A56F3CAB2AFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSoda.Scheduler", "src\CodeSoda.Scheduler\CodeSoda.Scheduler.csproj", "{CBFF8DB2-269A-47E3-BB20-EE7BDF0697A2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A659C25-E8B1-44B1-8C7C-A56F3CAB2AFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A659C25-E8B1-44B1-8C7C-A56F3CAB2AFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A659C25-E8B1-44B1-8C7C-A56F3CAB2AFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A659C25-E8B1-44B1-8C7C-A56F3CAB2AFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBFF8DB2-269A-47E3-BB20-EE7BDF0697A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBFF8DB2-269A-47E3-BB20-EE7BDF0697A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBFF8DB2-269A-47E3-BB20-EE7BDF0697A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBFF8DB2-269A-47E3-BB20-EE7BDF0697A2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

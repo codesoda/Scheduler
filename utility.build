@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<project name="ScanCARE.Activity" default="all">
+
+	<target name="create.config">
+		<copy file="config\local.properties.template.xml" tofile="config\local.properties.xml" overwrite="false" />
+	</target>
+
+	<target name="exec.sql.template">
+		<copy file="sql\${target}.template.sql" tofile="build\sql\${target}.sql" overwrite="true">
+			<filterchain>
+				<replacetokens>
+					<token key="INITIAL_CATALOG" value="${initial.catalog}" />
+					<token key="OSQL_CONNECTION_STRING" value="${osql.ConnectionString}" />
+					<token key="CONFIG_CONNECTION_STRING" value="${config.ConnectionString}" />
+					<token key="DBPATH" value="${database.path}"/>
+				</replacetokens>
+			</filterchain>
+		</copy>
+		<exec program="${osql.exe}" commandline="${osql.ConnectionString} -n -b -i build\sql\${target}.sql" />
+	</target>
+
+	<target name="clean" description="remove all build products">
+		<delete dir="build"  if="${directory::exists('build')}" />
+	</target>
+
+	<target name="init" >
+		<mkdir dir="build" />
+		<mkdir dir="build\sql" />
+		<mkdir dir="build\coverage" />
+		<mkdir dir="build\documentation" />
+	</target>
+
+	<target name="getSubversionRevision" depends="init">
+		<property name="svn.revision" value="0" overwrite="false"/>
+		<!-- if we are running under cruise control then retrieve subversion revision number -->
+		<!-- if test="${property::exists('CCNetLabel')}" -->
+			<echo message="Retrieving Subversion revision number"/>
+			<exec
+					program="${svn.exe}"
+					commandline='log "${directory::get-current-directory()}" --xml --limit 1'
+					output="build/revision.xml"
+					failonerror="false"/>
+			<xmlpeek
+					file="build/revision.xml"
+					xpath="/log/logentry/@revision"
+					property="svn.revision"
+					failonerror="false"/>
+			<echo message="Using Subversion revision number: ${svn.revision}"/>
+		<!-- /if -->
+	</target>
+
+	<target name="versioninfo" depends="init, getSubversionRevision" description="Generate version info for assemblies">
+		<echo message="Using Subversion revision number: ${svn.revision}"/>
+		<echo message="Using Assembly version number: ${Assembly.Version}"/>
+		<delete file="build\SolutionVersionInfo.cs" if="${file::exists('build\SolutionVersionInfo.cs')}" />
+
+		<asminfo output="build\SolutionVersionInfo.cs" language="CSharp">
+			<imports>
+				<import namespace="System" />
+				<import namespace="System.Reflection" />
+			</imports>
+			<attributes>
+				<attribute type="AssemblyVersionAttribute" value="${Assembly.Version}.${svn.revision}" />
+			</attributes>
+		</asminfo>
+	</target>
+
+</project>

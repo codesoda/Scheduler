@@ -1,0 +1,8 @@
+CodeSoda.Scheduler is a simple Task Scheduler in C# that enables any WinForms or ASP.NET /MVC project to run scheduled tasks in the background.
+It understands running a task AT a certain time, EVERY x time or can also host self managed tasks.
+
+CodeSoda.Scheduler does not interact with the system scheduled tasks in anyway and runs using threads within the hosted process.
+
+
+Inspired by
+- https://github.com/jmettraux/rufus-scheduler
