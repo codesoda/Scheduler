@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2E8E158C-CA39-4B7D-8BC4-A74CACB25F18}"
 	ProjectSection(SolutionItems) = preProject
+		config\environment.xml = config\environment.xml
 		project.build = project.build
+		README = README
 		utility.build = utility.build
 	EndProjectSection
 EndProject

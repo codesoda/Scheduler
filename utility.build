@@ -1,23 +1,5 @@
 <?xml version="1.0"?>
-<project name="ScanCARE.Activity" default="all">
-
-	<target name="create.config">
-		<copy file="config\local.properties.template.xml" tofile="config\local.properties.xml" overwrite="false" />
-	</target>
-
-	<target name="exec.sql.template">
-		<copy file="sql\${target}.template.sql" tofile="build\sql\${target}.sql" overwrite="true">
-			<filterchain>
-				<replacetokens>
-					<token key="INITIAL_CATALOG" value="${initial.catalog}" />
-					<token key="OSQL_CONNECTION_STRING" value="${osql.ConnectionString}" />
-					<token key="CONFIG_CONNECTION_STRING" value="${config.ConnectionString}" />
-					<token key="DBPATH" value="${database.path}"/>
-				</replacetokens>
-			</filterchain>
-		</copy>
-		<exec program="${osql.exe}" commandline="${osql.ConnectionString} -n -b -i build\sql\${target}.sql" />
-	</target>
+<project>
 
 	<target name="clean" description="remove all build products">
 		<delete dir="build"  if="${directory::exists('build')}" />
@@ -49,9 +31,10 @@
 		<!-- /if -->
 	</target>
 
-	<target name="versioninfo" depends="init, getSubversionRevision" description="Generate version info for assemblies">
+	<target name="versioninfo" depends="init" description="Generate version info for assemblies">
 		<echo message="Using Subversion revision number: ${svn.revision}"/>
 		<echo message="Using Assembly version number: ${Assembly.Version}"/>
+		
 		<delete file="build\SolutionVersionInfo.cs" if="${file::exists('build\SolutionVersionInfo.cs')}" />
 
 		<asminfo output="build\SolutionVersionInfo.cs" language="CSharp">

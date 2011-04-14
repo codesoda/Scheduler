@@ -56,12 +56,12 @@
   <ItemGroup>
     <Compile Include="ITask.cs" />
     <Compile Include="IScheduler.cs" />
+    <Compile Include="ITaskRunner.cs" />
     <Compile Include="Schedule.cs" />
     <Compile Include="Scheduler.cs" />
     <Compile Include="ScheduleType.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
+    <Compile Include="TaskRunners\PeriodicalTaskRunner.cs" />
+    <Compile Include="TaskRunners\ScheduledTaskRunner.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
